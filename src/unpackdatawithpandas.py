@@ -20,10 +20,19 @@ test.fillna(-9, inplace = True)
 
 traindata = df.values
 testdata = test.values
-forest = RandomForestClassifier(n_estimators = 968)
-forest = forest.fit(traindata[0::,0:968], traindata[0::,969])
-score = forest.score(testdata[0::,0:968], testdata[0::,969])
-output = forest.predict(testdata[0::,0:968])
+#code for random forest classifier
+#forest = RandomForestClassifier(n_estimators = 968)
+#forest = forest.fit(traindata[0::,0:968], traindata[0::,969])
+#score = forest.score(testdata[0::,0:968], testdata[0::,969])
+#output = forest.predict(testdata[0::,0:968])
+
+#code for boosted clasifier
+booster = GradientBoostingClassifier(n_estimators = 968)
+booster = booster.fit(traindata[0::,0:968], traindata[0::,969])
+score = booster.score(testdata[0::,0:968], testdata[0::,969])
+output = booster.predict(testdata[0::,0:968])
+
+
 print score
 print type(output)
 np.savetxt("../output files/fake_trial.csv", output, delimiter=",")
